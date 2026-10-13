@@ -1,0 +1,22 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Audit live URL with Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            https://thachrc.github.io/devops-lab1-portfolio/
+            https://thachrc.github.io/devops-lab1-portfolio/about.html
+            https://thachrc.github.io/devops-lab1-portfolio/contact.html
+          uploadArtifacts: true
+          temporaryPublicStorage: true
